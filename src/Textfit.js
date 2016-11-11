@@ -1,10 +1,12 @@
 import React, { createClass, PropTypes } from 'react';
+import filterProps from 'react-valid-props';
 import { findDOMNode } from 'react-dom';
 import shallowEqual from './utils/shallowEqual';
 import series from './utils/series';
 import whilst from './utils/whilst';
 import throttle from './utils/throttle';
 import uniqueId from './utils/uniqueId';
+
 import { innerWidth, innerHeight } from './utils/innerSize';
 
 function assertElementFitsWidth(el, width) {
@@ -213,7 +215,7 @@ export default createClass({
         if (mode === 'single') wrapperStyle.whiteSpace = 'nowrap';
 
         return (
-            <div style={finalStyle} {...props}>
+            <div style={finalStyle} {...filterProps(props)}>
                 <span ref="wrapper" style={wrapperStyle}>
                     {text && typeof children === 'function'
                         ? ready
