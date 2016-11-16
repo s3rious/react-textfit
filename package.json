@@ -30,7 +30,7 @@
   "homepage": "https://github.com/malte-wessel/react-textfit",
   "devDependencies": {
     "babel-cli": "^6.1.18",
-    "babel-core": "^6.0.0",o
+    "babel-core": "^6.0.0",
     "babel-eslint": "^4.1.5",
     "babel-loader": "^6.0.0",
     "babel-preset-es2015": "^6.0.0",
