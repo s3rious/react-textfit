@@ -31,16 +31,16 @@
   "devDependencies": {
     "babel-cli": "^6.1.18",
     "babel-core": "^6.0.0",
-    "babel-eslint": "^4.1.5",
+    "babel-eslint": "^7.1.0",
     "babel-loader": "^6.0.0",
     "babel-preset-es2015": "^6.0.0",
     "babel-preset-react": "^6.0.0",
     "babel-preset-stage-2": "^6.0.0",
-    "eslint": "^1.9.0",
-    "eslint-config-airbnb": "^1.0.0",
-    "eslint-plugin-react": "^3.9.0",
+    "eslint": "^3.10.2",
+    "eslint-config-airbnb": "^13.0.0",
+    "eslint-plugin-react": "^6.7.1",
     "expect": "^1.6.0",
-    "mocha": "^2.2.5",
+    "mocha": "^3.1.2",
     "react": "^15.4.0",
     "react-dom": "^15.4.0",
     "rimraf": "^2.3.4",
@@ -49,9 +49,13 @@
   },
   "peerDependencies": {
     "react": "^15.4.0",
-    "react-dom": "^15.4.0"
+    "react-dom": "^15.4.0",
+    "eslint-plugin-import": "2.1.0",
+    "eslint-plugin-jsx-a11y": "2.2.3"
   },
   "dependencies": {
+    "eslint-plugin-import": "^2.1.0",
+    "eslint-plugin-jsx-a11y": "^2.2.3",
     "react-valid-props": "^1.0.10"
   }
 }
