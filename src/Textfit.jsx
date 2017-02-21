@@ -201,9 +201,10 @@ export default createClass({
     render() {
         const { children, text, style, mode, ...props } = this.props;
         const { fontSize, ready } = this.state;
+
         const finalStyle = {
             ...style,
-            fontSize
+            fontSize: Number.isFinite(fontSize) ? fontSize : 'inherit'
         };
 
         const wrapperStyle = {
