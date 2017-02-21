@@ -26,10 +26,7 @@ export default createClass({
     displayName: 'Textfit',
 
     propTypes: {
-        children: PropTypes.oneOfType([
-            PropTypes.string,
-            PropTypes.func
-        ]),
+        children: PropTypes.element.isRequired,
         text: PropTypes.string,
         min: PropTypes.number,
         max: PropTypes.number,
