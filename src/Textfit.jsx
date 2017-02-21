@@ -129,14 +129,14 @@ export default createClass({
         let low = min;
         let high = max;
 
-        this.setState({ ready: false});
+        this.setState({ ready: false });
 
         series([
             // Step 1:
             // Binary search to fit the element's height (multi line) / width (single line)
             stepCallback => whilst(
                 () => low <= high,
-                whilstCallback => {
+                (whilstCallback) => {
                     if (shouldCancelProcess()) return whilstCallback(true);
                     mid = parseInt((low + high) / 2, 10);
                     this.setState({ fontSize: mid }, () => {
@@ -152,14 +152,14 @@ export default createClass({
             // Binary search to fit the element's width (multi line) / height (single line)
             // If mode is single and forceSingleModeWidth is true, skip this step
             // in order to not fit the elements height and decrease the width
-            stepCallback => {
+            (stepCallback) => {
                 if (mode === 'single' && forceSingleModeWidth) return stepCallback();
                 if (testSecondary()) return stepCallback();
                 low = min;
                 high = mid;
                 return whilst(
                     () => low <= high,
-                    whilstCallback => {
+                    (whilstCallback) => {
                         if (shouldCancelProcess()) return whilstCallback(true);
                         mid = parseInt((low + high) / 2, 10);
                         this.setState({ fontSize: mid }, () => {
@@ -175,12 +175,12 @@ export default createClass({
             // Step 3
             // Sometimes the text still overflows the elements bounds.
             // If perfectFit is true, decrease fontSize until it fits.
-            stepCallback => {
+            (stepCallback) => {
                 if (!perfectFit) return stepCallback();
                 if (testPrimary()) return stepCallback();
                 whilst(
                     () => !testPrimary(),
-                    whilstCallback => {
+                    (whilstCallback) => {
                         if (shouldCancelProcess()) return whilstCallback(true);
                         this.setState({ fontSize: --mid }, whilstCallback);
                     },
@@ -189,12 +189,12 @@ export default createClass({
             },
             // Step 4
             // Make sure fontSize is always greater than 0
-            stepCallback => {
+            (stepCallback) => {
                 if (mid > 0) return stepCallback();
                 mid = 1;
                 this.setState({ fontSize: mid }, stepCallback);
             }
-        ], err => {
+        ], (err) => {
             // err will be true, if another process was triggered
             if (err) return;
             this.setState({ ready: true }, () => onReady(mid));
@@ -202,11 +202,11 @@ export default createClass({
     },
 
     render() {
-        const { children, text, style, min, max, mode, ...props } = this.props;
+        const { children, text, style, mode, ...props } = this.props;
         const { fontSize, ready } = this.state;
         const finalStyle = {
             ...style,
-            fontSize: fontSize
+            fontSize
         };
 
         const wrapperStyle = {
@@ -215,16 +215,16 @@ export default createClass({
         if (mode === 'single') wrapperStyle.whiteSpace = 'nowrap';
 
         return (
-            <div style={finalStyle} {...filterProps(props)}>
-                <span ref="wrapper" style={wrapperStyle}>
-                    {text && typeof children === 'function'
-                        ? ready
-                            ? children(text)
-                            : text
-                        : children
-                    }
-                </span>
-            </div>
+          <div style={finalStyle} {...filterProps(props)}>
+            <span ref="wrapper" style={wrapperStyle}>
+              {text && typeof children === 'function'
+                  ? ready
+                      ? children(text)
+                      : text
+                  : children
+              }
+            </span>
+          </div>
         );
     }
 });
